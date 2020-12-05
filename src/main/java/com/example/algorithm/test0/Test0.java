@@ -8,7 +8,7 @@ package com.example.algorithm.test0;
  * @author gzj
  * @date 2020/12/5 18:18
  */
-public class test0 {
+public class Test0 {
 
     /**
      * 解题思路：
