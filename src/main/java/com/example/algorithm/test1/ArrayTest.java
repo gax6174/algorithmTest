@@ -19,15 +19,17 @@ public class ArrayTest {
     public ArrayTest(int size) {
         this.size = size;
         data = new int[size];
+        index = 0;
     }
 
 
-    public void insert(int index, int value) {
+    public void insert(int loc, int value) {
         if (index++ < size) {
-            for (int i = size-1; i > index; --i) {
+            // 注意是 size - 1
+            for (int i = size-1; i > loc; --i) {
                 data[i] = data[i-1];
             }
-            data[index] = value;
+            data[loc] = value;
         }
         else {
             // 扩容
@@ -35,20 +37,39 @@ public class ArrayTest {
         }
     }
 
-    public void delete(int index) {
-        if (index < size) {
-            for (int i = index; i < size-1; ++i) {
+    public void delete(int loc) {
+        for (int i = loc; i < size; ++i) {
+            if (i != size-1) {
                 data[i] = data[i+1];
             }
-            data[size - 1] = 0;
+            else {
+                data[i] = 0;
+            }
         }
+        index --;
     }
 
-    public int get(int index) {
-        return data[index];
+    public int get(int loc) {
+        return data[loc];
     }
 
-    public void update(int index, int value) {
-        data[index] = value;
+    public void update(int loc, int value) {
+        data[loc] = value;
+    }
+
+    public static void main(String[] args) {
+
+        ArrayTest array = new ArrayTest(10);
+        array.insert(0, 0);
+        array.insert(1, 1);
+        array.insert(3, 3);
+        array.insert(5, 5);
+        array.insert(6, 6);
+        System.out.println(array.get(0));
+        System.out.println(array.get(5));
+        array.update(5, 7);
+        System.out.println(array.get(5));
+        array.delete(5);
+        System.out.println(array.get(5));
     }
 }
