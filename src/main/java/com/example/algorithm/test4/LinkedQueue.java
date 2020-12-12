@@ -9,17 +9,16 @@ package com.example.algorithm.test4;
 public class LinkedQueue {
 
     private Node head;
+    private Node cur;
 
     void push(int m) {
         if (head == null) {
             head = new Node(m);
+            cur = head;
         }
         else {
-            Node cur = head;
-            while(cur.next != null) {
-                cur = cur.next;
-            }
             cur.next = new Node(m);
+            cur = cur.next;
         }
     }
 
@@ -34,6 +33,7 @@ public class LinkedQueue {
 
     public static void main(String[] args){
         LinkedQueue queue = new LinkedQueue();
+        System.out.println(queue.pop());
         queue.push(1);
         queue.push(2);
         queue.push(3);
